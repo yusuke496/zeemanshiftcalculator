@@ -60,7 +60,7 @@ def E(x) :
     return (H1(x+noffset)+H2+H3).eigenenergies()
 
 if __name__=='__main__' :
-    start = time.clock()
+    start = time.time()
     #num=multiprocessing.cpu_count()
     #print(num)
     #num=int(input('number of core ='))
@@ -70,7 +70,7 @@ if __name__=='__main__' :
     #result=p.map( E, range(nend) )
     result=Parallel(n_jobs=-1,verbose=5)(delayed(E)(k) for k in range(nend))
     x=np.arange(noffset,noffset+nend,1)
-    t=time.clock()-start
+    t=time.time()-start
     print(t)
     plt.xlabel("Magnetic field (Gauss)")
     plt.ylabel("Zeeman shift (MHz)")
